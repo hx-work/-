@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="margin" aria-hidden="true"></div>
     <main class="sheet">
       <header class="sheet-head">
         <h1>今天要做的事</h1>
-        <p class="date-line" id="date-line"></p>
-        <p class="remain" id="remain" hidden></p>
+        <div class="meta">
+          <p class="date-line" id="date-line"></p>
+          <p class="remain" id="remain" hidden></p>
+        </div>
         <div class="filters" role="group" aria-label="筛选">
           <button type="button" data-filter="all" aria-pressed="true">全部</button>
           <button type="button" data-filter="active" aria-pressed="false">还没做</button>
