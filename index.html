@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>今天要做的事</title>
+    <meta name="description" content="把今天要做的事写在这一页上，做完就划掉。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="margin" aria-hidden="true"></div>
+    <main class="sheet">
+      <header class="sheet-head">
+        <h1>今天要做的事</h1>
+        <p class="date-line" id="date-line"></p>
+        <p class="remain" id="remain" hidden></p>
+        <div class="filters" role="group" aria-label="筛选">
+          <button type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" data-filter="active" aria-pressed="false">还没做</button>
+          <button type="button" data-filter="done" aria-pressed="false">已经做完</button>
+        </div>
+      </header>
+
+      <p class="empty" id="empty">还没有要做的事。写在下面这一行。</p>
+      <ul class="tasks" id="list" aria-label="要做的事"></ul>
+
+      <form class="add-form" id="add-form">
+        <span class="cue" aria-hidden="true"></span>
+        <label class="sr-only" for="task-input">新的一件事</label>
+        <input
+          id="task-input"
+          name="task"
+          type="text"
+          maxlength="80"
+          placeholder="写下一件要做的事"
+          autocomplete="off"
+          required
+        >
+        <button type="submit" id="add-button" disabled>记下</button>
+      </form>
+      <p class="hint" id="hint" role="alert" hidden></p>
+
+      <button type="button" class="clear" id="clear-done" hidden>清掉已经做完的</button>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

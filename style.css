@@ -1,0 +1,274 @@
+:root {
+  --paper: #f3f6fb;
+  --ink: #1a2332;
+  --muted: #3e4c5e;
+  --faint: #5c6b7c;
+  --rule: #d3deec;
+  --margin: #c53636;
+  --mark: #9f1d1d;
+  --title: "ZCOOL XiaoWei", "Songti SC", "Noto Serif SC", serif;
+  --body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.margin {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 1.75rem;
+  width: 2px;
+  background: var(--margin);
+  transform-origin: top center;
+  animation: draw-margin 680ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes draw-margin {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.sheet {
+  width: min(40rem, 100%);
+  margin: 0;
+  padding: 3.5rem 1.75rem 5rem 4.5rem;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--title);
+  font-size: clamp(2.75rem, 7vw, 4.25rem);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.date-line,
+.remain,
+.empty,
+.hint {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.remain {
+  font-weight: 500;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.35rem;
+  margin-top: 1.75rem;
+}
+
+.filters button,
+.add-form button,
+.check,
+.delete,
+.clear {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.filters button {
+  min-height: 2.75rem;
+  padding: 0.35rem 0 0.45rem;
+  color: var(--muted);
+}
+
+.filters button[aria-pressed="true"] {
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--margin);
+}
+
+.tasks {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.task,
+.add-form {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  column-gap: 0.75rem;
+  align-items: start;
+  border-bottom: 1px solid var(--rule);
+}
+
+.task {
+  min-height: 3.35rem;
+}
+
+.task-text {
+  margin: 0.7rem 0;
+  overflow-wrap: anywhere;
+}
+
+.task.is-done .task-text {
+  color: var(--faint);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--mark);
+}
+
+.check,
+.delete,
+.cue {
+  margin-top: 0.72rem;
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin-left: 0.15rem;
+  border: 1.5px solid var(--ink);
+  padding: 0;
+}
+
+.check[aria-pressed="true"]::after {
+  content: "";
+  width: 0.62rem;
+  height: 0.32rem;
+  border-left: 2px solid var(--mark);
+  border-bottom: 2px solid var(--mark);
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.delete {
+  min-height: 2.75rem;
+  margin-top: 0.28rem;
+  padding: 0.35rem 0.15rem;
+  color: var(--muted);
+}
+
+.delete:hover,
+.clear:hover {
+  color: var(--mark);
+}
+
+.empty {
+  max-width: 26rem;
+  margin-top: 1.35rem;
+}
+
+.add-form {
+  margin-top: 0;
+  border-bottom-color: var(--ink);
+}
+
+.add-form:focus-within {
+  border-bottom-color: var(--margin);
+}
+
+.cue {
+  width: 0.85rem;
+  height: 2px;
+  margin-top: 1.45rem;
+  margin-left: 0.4rem;
+  background: var(--margin);
+}
+
+.add-form input {
+  width: 100%;
+  margin: 0;
+  padding: 0.85rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+}
+
+.add-form input::placeholder {
+  color: var(--faint);
+}
+
+.add-form button {
+  min-height: 2.75rem;
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.1rem;
+  font-weight: 700;
+}
+
+.add-form button:disabled {
+  color: var(--faint);
+  cursor: not-allowed;
+}
+
+.hint {
+  min-height: 1.4rem;
+  color: var(--mark);
+}
+
+.clear {
+  margin-top: 1.1rem;
+  padding: 0.45rem 0;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .margin {
+    left: 0.8rem;
+  }
+
+  .sheet {
+    padding: 2.25rem 1rem 4rem 2.35rem;
+  }
+
+  .task,
+  .add-form {
+    column-gap: 0.45rem;
+    grid-template-columns: 2.2rem minmax(0, 1fr) auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .margin {
+    animation: none;
+  }
+}
